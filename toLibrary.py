@@ -51,8 +51,13 @@ for name, source in SOURCE_FILES:
     for library in dynamic_libraries:
         if not library.startswith(name):
             continue
+
+        move_to_dir = os.path.dirname(source) + ".library"
         move_from = os.path.join(base_dir, library)
-        move_to = os.path.join(os.path.dirname(source), library)
+        move_to = os.path.join(move_to_dir, library)
+
+        os.makedirs(move_to_dir, exist_ok=True)
         pathlib.Path(move_to).unlink(missing_ok=True)
         shutil.move(move_from, move_to)
+
         break
