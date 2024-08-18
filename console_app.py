@@ -21,7 +21,7 @@ if __name__ == "__main__":
     source_files = get_source_files(args.sources, args.exclude)
 
     if not source_files:
-        sys.exit("No available source found.")
+        sys.exit("No available source files found.")
 
     # Generate libraries
     generate_libraries(source_files)
